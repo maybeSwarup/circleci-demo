@@ -10,7 +10,19 @@ jobs:
           name: Run cargo command
           command: cargo run
 
+  test:
+    docker:
+      - image: cimg/rust:1.77.1
+    steps:
+      - checkout
+      - run:
+          name: Run cargo test
+          command: cargo test
+
 workflows:
   build_now:
     jobs:
       - build
+      - test:
+          requires:
+            - build
