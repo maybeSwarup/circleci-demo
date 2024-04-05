@@ -24,10 +24,6 @@ jobs:
       - image: cimg/rust:1.77.1
     steps:
       - run: echo "Deploying to production server"
-    filters:
-      branches:
-        only:
-          - main
 
 workflows:
   build_now:
@@ -39,3 +35,6 @@ workflows:
       - deploy:
           requires:
             - test
+          filters:
+            branches:
+              only: main
